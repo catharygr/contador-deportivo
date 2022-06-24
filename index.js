@@ -1,6 +1,6 @@
 const nombreHome = document.querySelector('#nombre-home')
 const nombreGuest = document.querySelector('#nombre-guest')
-
+const displayTime = document.querySelector('#display-time')
 
 const displayHome = document.querySelector('#display-home')
 const displayGuest = document.querySelector('#display-guest')
@@ -83,10 +83,40 @@ function colorGanador() {
   }
 }
 
-btnStart.addEventListener('click', function() {
-    puntosHome = 0
-    renderHomeDisplay(puntosHome)
-    puntosGuest = 0
-    renderGuestDisplay(puntosGuest)
-  console.log(puntosGuest)
-})
+function elReloj() {
+    btnStart.removeEventListener('click',startGame)
+    let losSegundos = 120
+
+    const temporizador = setInterval(function() {
+      let losMinutos = Math.floor(losSegundos / 60)
+      let losSegunditos = losSegundos % 60 
+
+      if(losSegunditos < 10) {
+        losSegunditos = '0' + losSegunditos
+      }
+      if (losMinutos < 10) {
+        losMinutos = '0' + losMinutos
+      }
+
+      displayTime.innerHTML = `
+      ${losMinutos} : ${losSegunditos}
+      ` 
+      losSegundos--
+      if(losSegundos < 0) {
+        clearInterval(temporizador)
+        btnStart.addEventListener('click', startGame)
+      }
+    } ,1000)
+
+  }
+
+
+function startGame() {
+  puntosHome = 0
+  renderHomeDisplay(puntosHome)
+  puntosGuest = 0
+  renderGuestDisplay(puntosGuest)
+  elReloj()
+}
+
+btnStart.addEventListener('click', startGame)

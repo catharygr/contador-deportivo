@@ -38,7 +38,8 @@ body {
 
 .semaforo {
   display: flex;
-  gap: 4rem;
+  gap: 2rem;
+  align-items: center;
 }
 
 .panel {
@@ -56,6 +57,18 @@ body {
   font-family: "digital";
   font-size: 4rem;
   color: red;
+}
+
+.display-time {
+  background-color: rgb(8, 0, 1);
+  padding: 0.5rem 1rem;
+  margin-block: .5rem;
+  width: 120px;
+  text-align: center;
+  font-family: "digital";
+  font-size: 2rem;
+  color: white;
+
 }
 
 .verde {
